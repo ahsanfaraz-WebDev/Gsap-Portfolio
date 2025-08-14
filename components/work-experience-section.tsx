@@ -224,16 +224,30 @@ const WorkExperienceSection = () => {
             CURRENTLY WORKING AT
           </div>
 
-          {/* Company Name - Mask reveal */}
+          {/* Company Name - Mask reveal with half-and-half colors */}
           <div 
             ref={companyNameRef}
-            className="text-6xl md:text-8xl lg:text-9xl font-black text-white tracking-tight leading-none mb-16"
+            className="text-6xl md:text-8xl lg:text-9xl font-black tracking-tight leading-none mb-16"
             style={{ 
               fontFamily: "Urbanist, sans-serif",
               textShadow: "0 0 100px rgba(255, 255, 255, 0.1)"
             }}
           >
-            {experience.company.toUpperCase()}
+            {experience.company.toUpperCase().split('').map((char, index) => (
+              <span
+                key={index}
+                className="half-split-char"
+                style={{
+                  background: `linear-gradient(90deg, #2E073F 50%, white 50%)`,
+                  WebkitBackgroundClip: 'text',
+                  backgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  color: 'transparent'
+                }}
+              >
+                {char}
+              </span>
+            ))}
           </div>
         </div>
 
@@ -248,7 +262,7 @@ const WorkExperienceSection = () => {
           {/* Role Title - Slide up */}
           <div 
             ref={roleTitleRef}
-            className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-200 tracking-wide mb-20"
+            className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-200  mb-20"
           >
             {experience.position}
           </div>
