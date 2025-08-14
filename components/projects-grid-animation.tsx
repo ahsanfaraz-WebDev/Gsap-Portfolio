@@ -436,7 +436,7 @@ export default function ProjectsGridAnimation() {
                 <li key={project.id} data-active={isActive}>
                   <article>
                     <h3>{project.title}</h3>
-                    <IconComponent />
+                    {!isActive && <IconComponent />}
                     <div className="content-container">
                       <p className="typewriter-text">
                         {displayText}
@@ -884,26 +884,28 @@ export default function ProjectsGridAnimation() {
           padding: 0.5rem 1rem;
           background: linear-gradient(
             135deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(255, 255, 255, 0.05) 100%
+            rgba(255, 255, 255, 0.25) 0%,
+            rgba(255, 255, 255, 0.15) 100%
           );
-          border: 1px solid rgba(255, 255, 255, 0.2);
+          border: 1px solid rgba(255, 255, 255, 0.4);
           border-radius: 6px;
           font-size: 13px;
           font-weight: 500;
           transition: all 0.3s ease;
           backdrop-filter: blur(4px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .projects-grid article a:is(:focus-visible, :hover) {
           outline: none;
           background: linear-gradient(
             135deg,
-            rgba(255, 255, 255, 0.2) 0%,
-            rgba(255, 255, 255, 0.1) 100%
+            rgba(255, 255, 255, 0.15) 0%,
+            rgba(255, 255, 255, 0.25) 100%
           );
-          border-color: rgba(255, 255, 255, 0.3);
+          border-color: rgba(255, 255, 255, 0.6);
           transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
         .projects-grid article a:is(:focus-visible, :hover) span {

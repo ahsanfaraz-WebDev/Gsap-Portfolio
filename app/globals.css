@@ -449,3 +449,93 @@ nav {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
+/* Expertise Cards Hover Animation Styles */
+.expertise-grid {
+  position: relative;
+}
+
+.expertise-grid::after {
+  border-radius: 1rem;
+  content: "";
+  position: absolute;
+  background: hsl(0 0% 10%);
+  pointer-events: none;
+  z-index: -2;
+  inset: calc(var(--top, 0) * 1px) calc(100% - (var(--right, 0) * 1px)) calc(100% - (var(--bottom, 0) * 1px)) calc(var(--left, 0) * 1px);
+  transition: inset 0.2s;
+  opacity: 0;
+}
+
+.expertise-grid[data-enhanced]:hover {
+  --active: 1;
+}
+
+.expertise-grid[data-enhanced]::after {
+  opacity: var(--active, 0);
+  transition: opacity 0.2s, inset 0.2s 0.2s;
+}
+
+.expertise-grid[data-enhanced]:hover::after {
+  transition: opacity 0.2s 0.2s, inset 0.2s;
+}
+
+/* Fallback for browsers without anchor positioning */
+.expertise-grid:not([data-enhanced]) .expertise-article::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: hsl(0 0% 10%);
+  border-radius: 1rem;
+  opacity: var(--li-active, 0);
+  transition: opacity 0.2s;
+}
+
+.expertise-article {
+  position: relative;
+  border-radius: 1rem;
+}
+
+.expertise-article::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(hsl(0 0% 2%) 0 2px, transparent 2px 38px) -20px -20px / 40px 40px,
+    linear-gradient(90deg, hsl(0 0% 2%) 0 2px, transparent 2px 38px) -20px -20px / 40px 40px;
+  mask: linear-gradient(-35deg, hsl(0 0% 2%) 0%, transparent 45%);
+  -webkit-mask: linear-gradient(-35deg, hsl(0 0% 2%) 0%, transparent 45%);
+  z-index: -1;
+  opacity: var(--li-active, 0);
+  transition: opacity 0.2s;
+  border-radius: inherit;
+}
+
+.expertise-item:hover {
+  --li-active: 1;
+  transform: translateY(-2px);
+}
+
+.expertise-item {
+  transition: transform 0.2s ease;
+}
+
+.expertise-article svg {
+  fill: none;
+  stroke: currentColor;
+}
+
+.expertise-article svg path {
+  stroke-width: 0.75;
+  stroke: hsl(var(--hue, 30) calc(var(--li-active, 0) * 60%) 60%);
+  transition: stroke 0.2s;
+}
+
+/* Enhanced text gradient for expertise cards */
+.expertise-article p {
+  background: linear-gradient(hsl(0 0% 80%), hsl(0 0% 50%));
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  font-weight: 400;
+}
